@@ -11,11 +11,6 @@
 |
 */
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
-});
-*/
-
-Route::get('/', function() {
-  return Response::json('hola');
 });
