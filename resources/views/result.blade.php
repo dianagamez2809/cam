@@ -8,10 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
 
-    <title> Codon List</title></title>
+    <title> Sequences</title></title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -66,42 +65,66 @@
 
     <!-- Portfolio Grid Section -->
     <section id="portfolio" style="margin-top: 50px;">
-        @foreach($types as $type)
-            <div class="container">
-                <h1 style="color:#29788A">{{ $type }} </h1>
-                <div class="row">
-                    <?php $counter = 1;?>
-                    @foreach($codonsAll as $codon)
-                        @if($codon->type == $type)
-                            @if($counter == 1)
-                                <div class="col-md-3">
-                                    <div class="row">
-                                      <div class="col-xs-4 col-sm-4">{{ $codon->triplet }}</div>
-                                      <div class="col-xs-4 col-sm-4" style="text-align:right">{{ $codon->frequency }} &nbsp; ( </div>
-                                      <div class="col-xs-4 col-sm-4" style="text-align:right">{{ $codon->number }} )</div>
-                                    </div>
-                                <?php $counter++; ?>
-                            @elseif($counter == 4)
-                                    <div class="row">
-                                      <div class="col-xs-4 col-sm-4">{{ $codon->triplet }}</div>
-                                      <div class="col-xs-4 col-sm-4" style="text-align:right">{{ $codon->frequency }} &nbsp; ( </div>
-                                      <div class="col-xs-4 col-sm-4" style="text-align:right">{{ $codon->number }} )</div>
-                                    </div>
-                                </div>
-                                <?php $counter=1; ?>
-                            @else
-                                   <div class="row">
-                                      <div class="col-xs-4 col-sm-4">{{ $codon->triplet }}</div>
-                                      <div class="col-xs-4 col-sm-4"style="text-align:right">{{ $codon->frequency }} &nbsp; ( </div>
-                                      <div class="col-xs-4 col-sm-4" style="text-align:right">{{ $codon->number }} )</div>
-                                    </div>
-                                <?php $counter++; ?>
-                            @endif
-                        @endif
+        <div class="container">
+            <h1 style="color:#29788A">Result</h1>
+            
+            <h3 style="color:#29788A">RNA</h3>
+            <div class="row">
+                <div class="col-md-12" style="border-radius: 25px;border: 2px solid #2c3e50;padding: 20px;width: 100%;height: 100%;  ">
+                    @foreach($result as $r)
+                        {{$r}}
                     @endforeach
                 </div>
             </div>
-        @endforeach
+            
+            <h3 style="color:#29788A">DNA</h3>
+            <div class="row">
+                <div class="col-md-12" style="border-radius: 25px;border: 2px solid #2c3e50;padding: 20px;width: 100%;height: 100%;  ">
+                    @foreach($result as $r)
+                        <?php echo str_replace("U", "T", $r) ?>
+                    @endforeach
+                </div>
+            </div>
+            
+            <table class="table table-striped" style="margin-top:5%">
+                <tr style="background-color:#2c3e50;color: white;">
+                    <th>Amino acid</th>
+                    <th>Triplet</th> 
+                    <th>Synechocystis</th>
+                    <th>Penicillium roquefortii</th>
+                    <th>Escherichia coli K12</th>
+                    <th>Rhodococcus sp. RHA1 </th>
+                </tr>
+                <?php $i = 0;?>
+                @foreach($rf as $f)
+                    <tr>
+                        <td>{{$f}}</td>
+                        <td>{{$result[$i]}}</td> 
+                        <td>
+                            <?php $freqs = DB::table('codon')->where('triplet', $result[$i])->where('type', 'Synechocystis' )->pluck('frequency');
+                                echo $freqs[0];
+                            ?>
+                        </td>
+                        <td>
+                            <?php $freqp = DB::table('codon')->where('triplet', $result[$i])->where('type', 'Penicillium roquefortii' )->pluck('frequency');
+                                echo $freqp[0];
+                            ?>
+                        </td>
+                        <td>
+                            <?php $freqe = DB::table('codon')->where('triplet', $result[$i])->where('type', 'Escherichia coli' )->pluck('frequency');
+                                echo $freqe[0];
+                            ?>
+                        </td>
+                        <td>
+                            <?php $freqr = DB::table('codon')->where('triplet', $result[$i])->where('type', 'Rhodococcus' )->pluck('frequency');
+                                echo $freqr[0];
+                            ?>
+                        </td>
+                    </tr>
+                <?php $i++; ?>
+                @endforeach
+            </table>
+        </div>
     </section>
 
     

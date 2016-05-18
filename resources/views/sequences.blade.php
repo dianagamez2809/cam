@@ -38,7 +38,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top"><img src="img/logo2.png" alt="logo" style = "margin-top: -25px;height: 67px;"></a>
+                <a class="navbar-brand" href="{{ url('index') }}"><img src="img/logo2.png" alt="logo" style = "margin-top: -25px;height: 67px;"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -66,7 +66,7 @@
     <!-- Portfolio Grid Section -->
     <section id="portfolio" style="margin-top: 50px;">
         <div class="container">
-            <h1 style="color:#29788A">Consult</h1>
+            <h1 style="color:#29788A">Search</h1>
             {!! Form::open(array('url' => 'search')) !!}
             <div class="form-group">
                 <label for="sequence">Sequence</label>
@@ -87,7 +87,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Your Website 2014
+                        Copyright &copy; Your Website 2016
                     </div>
                 </div>
             </div>

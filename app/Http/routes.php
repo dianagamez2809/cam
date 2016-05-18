@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('index', function () {
+    return view('index');
+});
+
 Route::get('sequences', function () {
     return view('sequences');
 });
@@ -25,8 +29,37 @@ Route::get('sequences', function () {
 Route::post('search', function(){
    $sequence = Input::get('sequence'); 
    $sequence = strtoupper($sequence);
-   return Response::json($sequence);
+   $rf = str_split($sequence);
+   $find = str_replace("*", "Z", $rf);
+   $k = 0;
+   foreach($find as $f){
+       $triplets = DB::table('nucle')->where('amino', $f)->pluck('triplet');
+       $freqs = DB::table('codon')->whereIn('triplet', $triplets)->where('type', 'Synechocystis')->pluck('frequency');
+       $freqp = DB::table('codon')->whereIn('triplet', $triplets)->where('type', 'Penicillium roquefortii')->pluck('frequency');
+       $freqe = DB::table('codon')->whereIn('triplet', $triplets)->where('type', 'Escherichia coli')->pluck('frequency');
+       $freqr = DB::table('codon')->whereIn('triplet', $triplets)->where('type', 'Rhodococcus')->pluck('frequency');
+       $distance = array();
+       if(count($freqs) > 0){
+           for ($i = 0; $i < count($freqe); $i++) {
+                $distance[$i] = abs($freqs[$i]-$freqp[$i]) + abs($freqs[$i]-$freqe[$i]) + abs($freqs[$i]-$freqr[$i]) + abs($freqp[$i]-$freqe[$i]) + abs($freqp[$i]-$freqr[$i]) + abs($freqe[$i]-$freqr[$i]);
+            }
+            $valmin = min($distance);
+            $keymin = array_search($valmin, $distance);
+            $result[$k] = $triplets[$keymin];
+       }
+       else{
+           $result[$k] = $triplets;
+       }
+        $k++;
+        
+   }
+       
+   //return Response::json($result);
+   return View::make('result')
+        ->with(array('result' => $result, 'rf' => $rf));
 });
+
+
 Route::get('list', function () {
     $codonsAll = DB::table('codon')->get();
     $i = 0;

@@ -37,7 +37,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top"><img src="img/logo2.png" alt="logo" style = "margin-top: -25px;height: 67px;"></a>
+                <a class="navbar-brand" href="{{ url('index') }}"><img src="img/logo2.png" alt="logo" style = "margin-top: -25px;height: 67px;"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -129,7 +129,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Your Website 2014
+                        Copyright &copy; Your Website 2016
                     </div>
                 </div>
             </div>
