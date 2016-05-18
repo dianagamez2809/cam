@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+use Illuminate\Support\Facades\Input;
 
 
 Route::get('/', function () {
@@ -21,6 +21,12 @@ Route::get('sequences', function () {
     return view('sequences');
 });
 
+
+Route::post('search', function(){
+   $sequence = Input::get('sequence'); 
+   $sequence = strtoupper($sequence);
+   return Response::json($sequence);
+});
 Route::get('list', function () {
     $codonsAll = DB::table('codon')->get();
     $i = 0;

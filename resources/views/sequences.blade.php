@@ -67,14 +67,10 @@
     <section id="portfolio" style="margin-top: 50px;">
         <div class="container">
             <h1 style="color:#29788A">Consult</h1>
-            {!! Form::open() !!}
+            {!! Form::open(array('url' => 'search')) !!}
             <div class="form-group">
                 <label for="sequence">Sequence</label>
-                {!! Form::textarea( 'sequence', null, ['class' => 'form-control', 'rows' => '3']) !!}
-            </div>
-            <div class="form-group">
-                <label for="nucleotide">Nucleotide</label>
-                {!! Form::select('type', DB::table('codon')->lists('type', 'type'), null,['class' => 'form-control']) !!}
+                {!! Form::textarea('sequence', null, ['class' => 'form-control', 'rows' => '3', 'style' => 'text-transform:uppercase']) !!}
             </div>
             
             {{ Form::submit('Submit', array('class' => 'btn btn-default btn-lg btn-block', 'style' => 'margin-top:5%')) }}
