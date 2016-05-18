@@ -2,7 +2,7 @@
     <head>
       <title>Codon system</title>
       <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
-      {{ HTML::style('css/foundation.css'); }}
+      {{ HTML::style('css/foundation.css') }}
     </head>
     <body>
         <div class="container">
