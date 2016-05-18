@@ -44,16 +44,16 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
-                        {!! Html::link('/') !!}
+                        <a href="#page-top"></a>
                     </li>
                     <li >
-                        {!! Html::link('sequences', 'Sequences') !!}
+                        <a href="">Sequences</a>
                     </li>
                     <li >
-                        {!! Html::link('view', 'View Codons') !!}
+                        <a href="">View Codon</a>
                     </li>
                     <li >
-                        {!! Html::link('upload', 'Upload Codon') !!}
+                        <a href="">Upload Codon</a>
                     </li>
                 </ul>
             </div>
@@ -61,22 +61,6 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-text">
-                        <span class="name">Codons and amino acids</span>
-                        <hr >
-                        <span class="skills">Generator</span>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
 
     <!-- Portfolio Grid Section -->
     <section id="portfolio">
