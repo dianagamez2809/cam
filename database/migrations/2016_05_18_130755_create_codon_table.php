@@ -13,7 +13,12 @@ class CreateCodonTable extends Migration
     public function up()
     {
         Schema::table('codon', function (Blueprint $table) {
-            //
+          $table->increments('id');
+          $table->string('triplet');
+          $table->float('frequency');
+          $table->integer('number');
+          $table->string('type');
+          $table->timestamps();
         });
     }
 
@@ -25,7 +30,7 @@ class CreateCodonTable extends Migration
     public function down()
     {
         Schema::table('codon', function (Blueprint $table) {
-            //
+            Schema::drop('codon');
         });
     }
 }
