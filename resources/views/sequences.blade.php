@@ -66,13 +66,20 @@
     <!-- Portfolio Grid Section -->
     <section id="portfolio" style="margin-top: 50px;">
         <div class="container">
-            <h1 style="color:#29788A">Results</h1>
-            <div class="row">
-                <div class="col-md-3">.col-md-4</div>
-                <div class="col-md-3">.col-md-4</div>
-                <div class="col-md-3">.col-md-4</div>
-                <div class="col-md-3">.col-md-4</div>
+            <h1 style="color:#29788A">Consult</h1>
+            {!! Form::open() !!}
+            <div class="form-group">
+                <label for="sequence">Sequence</label>
+                {!! Form::textarea( 'sequence', null, ['class' => 'form-control', 'rows' => '3']) !!}
             </div>
+            <div class="form-group">
+                <label for="nucleotide">Nucleotide</label>
+                {!! Form::select('type', DB::table('codon')->lists('type', 'type'), null,['class' => 'form-control']) !!}
+            </div>
+            
+            {{ Form::submit('Submit', array('class' => 'btn btn-default btn-lg btn-block', 'style' => 'margin-top:5%')) }}
+                
+            {!! Form::close() !!}
         </div>
     </section>
 

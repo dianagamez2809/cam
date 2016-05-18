@@ -11,7 +11,7 @@
 |
 */
 
-use DB;
+
 
 Route::get('/', function () {
     return view('index');
@@ -22,11 +22,21 @@ Route::get('sequences', function () {
 });
 
 Route::get('list', function () {
-    $codons = DB::table('codon')->get();
+    $codonsAll = DB::table('codon')->get();
+    $i = 0;
+    $types = array();
+    foreach($codonsAll as $codon) {
+        if(!in_array(($codon->type), $types)) {
+            $types[$i] = $codon->type;
+            $i++;
+        }
+    }
+   
 
+    //return Response::json($tmp);
     // load the view and pass the nerds
     return View::make('list')
-        ->with('codons', $codons);
+        ->with(array('codonsAll'=> $codonsAll, 'types' => $types ));
 });
 
 Route::get('upload', function () {

@@ -66,15 +66,42 @@
 
     <!-- Portfolio Grid Section -->
     <section id="portfolio" style="margin-top: 50px;">
-        <div class="container">
-            <h1 style="color:#29788A">Upload codon </h1>
-            <div class="row">
-                <div class="col-md-3">.col-md-4</div>
-                <div class="col-md-3">.col-md-4</div>
-                <div class="col-md-3">.col-md-4</div>
-                <div class="col-md-3">.col-md-4</div>
+        @foreach($types as $type)
+            <div class="container">
+                <h1 style="color:#29788A">{{ $type }} </h1>
+                <div class="row">
+                    <?php $counter = 1;?>
+                    @foreach($codonsAll as $codon)
+                        @if($codon->type == $type)
+                            @if($counter == 1)
+                                <div class="col-md-3">
+                                    <div class="row">
+                                      <div class="col-xs-4 col-sm-4">{{ $codon->triplet }}</div>
+                                      <div class="col-xs-4 col-sm-4" style="text-align:right">{{ $codon->frequency }} &nbsp; ( </div>
+                                      <div class="col-xs-4 col-sm-4" style="text-align:right">{{ $codon->number }} )</div>
+                                    </div>
+                                <?php $counter++; ?>
+                            @elseif($counter == 4)
+                                    <div class="row">
+                                      <div class="col-xs-4 col-sm-4">{{ $codon->triplet }}</div>
+                                      <div class="col-xs-4 col-sm-4" style="text-align:right">{{ $codon->frequency }} &nbsp; ( </div>
+                                      <div class="col-xs-4 col-sm-4" style="text-align:right">{{ $codon->number }} )</div>
+                                    </div>
+                                </div>
+                                <?php $counter=1; ?>
+                            @else
+                                   <div class="row">
+                                      <div class="col-xs-4 col-sm-4">{{ $codon->triplet }}</div>
+                                      <div class="col-xs-4 col-sm-4"style="text-align:right">{{ $codon->frequency }} &nbsp; ( </div>
+                                      <div class="col-xs-4 col-sm-4" style="text-align:right">{{ $codon->number }} )</div>
+                                    </div>
+                                <?php $counter++; ?>
+                            @endif
+                        @endif
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @endforeach
     </section>
 
     
