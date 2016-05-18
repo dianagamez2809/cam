@@ -8,9 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
 
-    <title> Sequences</title></title>
+    <title> Codon List</title></title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -66,7 +67,7 @@
     <!-- Portfolio Grid Section -->
     <section id="portfolio" style="margin-top: 50px;">
         <div class="container">
-            <h1 style="color:#29788A">Results</h1>
+            <h1 style="color:#29788A">Upload codon </h1>
             <div class="row">
                 <div class="col-md-3">.col-md-4</div>
                 <div class="col-md-3">.col-md-4</div>
