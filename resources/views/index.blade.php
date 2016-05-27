@@ -70,7 +70,7 @@
                     <div class="intro-text">
                         <span class="name">Codons and amino acids</span>
                         <hr >
-                        <span class="skills">Nucleotide Generator</span>
+                        <span class="skills">Sequences Generator</span>
                         
                     </div>
                 </div>

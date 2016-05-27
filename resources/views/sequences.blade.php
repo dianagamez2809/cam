@@ -78,6 +78,21 @@
             {!! Form::close() !!}
         </div>
     </section>
+    
+    <section id="portfolio" style="margin-top: -100px">
+        <div class="container">
+            <h1 style="color:#29788A">Search v2</h1>
+            {!! Form::open(array('url' => 'searchv2')) !!}
+            <div class="form-group">
+                <label for="sequence">Sequence</label>
+                {!! Form::textarea('sequence', null, ['class' => 'form-control', 'rows' => '3', 'style' => 'text-transform:uppercase']) !!}
+            </div>
+            
+            {{ Form::submit('Submit v2', array('class' => 'btn btn-default btn-lg btn-block', 'style' => 'margin-top:5%')) }}
+                
+            {!! Form::close() !!}
+        </div>
+    </section>
 
     
 
